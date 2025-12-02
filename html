@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ডিজিটাল মার্কেটিং শিখুন প্রফেশনাল থ্রিডি ইন্টারেক্টিভ কোর্সে। প্রথম ৩ দিন ফ্রি! SEO, সোশ্যাল মিডিয়া মার্কেটিং, কন্টেন্ট মার্কেটিং এবং আরো অনেক কিছু।">
+    <title>ডিজিটাল মার্কেটিং মাস্টারি - থ্রিডি ইন্টারেক্টিভ কোর্স</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --gradient: linear-gradient(135deg, #4361ee, #3a0ca3);
+            --neon-glow: 0 0 10px rgba(67, 97, 238, 0.7), 0 0 20px rgba(67, 97, 238, 0.5), 0 0 30px rgba(67, 97, 238, 0.3);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, #0c0c2e 0%, #1a1a3e 100%);
+            overflow-x: hidden;
+            perspective: 1000px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Particles Background */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        
+        /* Header Styles */
+        header {
+            background: rgba(10, 10, 40, 0.85);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 0 10px rgba(67, 97, 238, 0.8);
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+            filter: drop-shadow(0 0 5px rgba(247, 37, 133, 0.8));
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+            position: relative;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+            background: rgba(255, 255, 255, 0.1);
+            text-shadow: 0 0 10px rgba(247, 37, 133, 0.8);
+        }
+        
+        .cta-button {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Hind Siliguri', sans-serif;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: var(--neon-glow);
+        }
+        
+        .cta-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+        
+        .cta-button:hover:before {
+            left: 100%;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(67, 97, 238, 0.6), 0 0 20px rgba(67, 97, 238, 0.4);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+        }
+        
+        /* 3D Hero Section */
+        .hero {
+            padding: 180px 0 100px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 30%, rgba(67, 97, 238, 0.2) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 70%, rgba(247, 37, 133, 0.15) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            max-width: 90%;
+        }
+        
+        .highlight {
+            background: linear-gradient(90deg, var(--accent), #ff2d95);
+            padding: 10px 20px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-weight: 600;
+            animation: pulse 2s infinite;
+            box-shadow: 0 5px 15px rgba(247, 37, 133, 0.4);
+            transform-style: preserve-3d;
+            transform: translateZ(20px);
+        }
+        
+        .hero-3d-container {
+            width: 100%;
+            height: 400px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: perspective(1000px) rotateY(-15deg) rotateX(5deg);
+            transition: transform 0.5s;
+        }
+        
+        .hero-3d-container:hover {
+            transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+        }
+        
+        #hero-3d-canvas {
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(67, 97, 238, 0.3);
+            background: rgba(10, 10, 40, 0.7);
+            border: 1px solid var(--glass-border);
+        }
+        
+        /* 3D Card Section */
+        .course-details {
+            padding: 120px 0;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+        
+        .section-title h2 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .section-title p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 5px;
+            background: var(--gradient);
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(67, 97, 238, 0.7);
+        }
+        
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .topic-card {
+            background: var(--glass-bg);
+            border-radius: 15px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.5s;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            transform-style: preserve-3d;
+            transform: translateZ(0);
+            height: 350px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-20px) translateZ(20px) rotateX(5deg);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), var(--neon-glow);
+            border-color: rgba(67, 97, 238, 0.5);
+        }
+        
+        .topic-card i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            filter: drop-shadow(0 0 10px rgba(67, 97, 238, 0.7));
+        }
+        
+        .topic-card h4 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .topic-card p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* 3D Model Viewer */
+        .model-viewer {
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .model-container {
+            width: 100%;
+            max-width: 800px;
+            height: 500px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(67, 97, 238, 0.3);
+            border: 1px solid var(--glass-border);
+            position: relative;
+        }
+        
+        #3d-model-canvas {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .model-controls {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .model-btn {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+        
+        .model-btn:hover {
+            background: rgba(67, 97, 238, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        /* Free Trial Section */
+        .free-trial {
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .free-trial::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(67, 97, 238, 0.2) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        .free-trial h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: white;
+            text-align: center;
+        }
+        
+        .free-trial p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 50px;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+        }
+        
+        .trial-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .benefit {
+            background: var(--glass-bg);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            transition: all 0.5s;
+            transform-style: preserve-3d;
+            transform: translateZ(0);
+        }
+        
+        .benefit:hover {
+            transform: translateY(-15px) translateZ(20px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(76, 201, 240, 0.3);
+            border-color: rgba(76, 201, 240, 0.5);
+        }
+        
+        .benefit i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--success);
+            filter: drop-shadow(0 0 10px rgba(76, 201, 240, 0.7));
+        }
+        
+        .benefit h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .benefit p {
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+        }
+        
+        .registration-form {
+            background: var(--glass-bg);
+            padding: 50px;
+            border-radius: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            transform-style: preserve-3d;
+            transform: perspective(1000px) rotateX(5deg);
+            transition: transform 0.5s;
+        }
+        
+        .registration-form:hover {
+            transform: perspective(1000px) rotateX(0deg);
+        }
+        
+        .registration-form h3 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-align: center;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: white;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(67, 97, 238, 0.5);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 120px 0;
+            position: relative;
+        }
+        
+        .testimonial-slider {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial {
+            background: var(--glass-bg);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            margin: 20px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            transform-style: preserve-3d;
+            transition: all 0.5s;
+        }
+        
+        .testimonial:hover {
+            transform: translateY(-10px) translateZ(20px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(247, 37, 133, 0.2);
+        }
+        
+        .testimonial img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid var(--primary);
+            box-shadow: 0 0 20px rgba(67, 97, 238, 0.5);
+        }
+        
+        .testimonial h4 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .testimonial p {
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(5, 5, 20, 0.95);
+            color: white;
+            padding: 80px 0 30px;
+            border-top: 1px solid var(--glass-border);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 0 0 10px rgba(67, 97, 238, 0.8);
+        }
+        
+        .footer-links h4, .footer-contact h4 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+            color: white;
+        }
+        
+        .footer-links h4::after, .footer-contact h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+            box-shadow: 0 0 10px rgba(67, 97, 238, 0.7);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+            text-shadow: 0 0 10px rgba(247, 37, 133, 0.8);
+        }
+        
+        .footer-contact p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .footer-contact i {
+            margin-right: 15px;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: translateZ(20px) scale(1); }
+            50% { transform: translateZ(20px) scale(1.05); }
+            100% { transform: translateZ(20px) scale(1); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateZ(0); }
+            50% { transform: translateY(-20px) translateZ(20px); }
+        }
+        
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 10px rgba(67, 97, 238, 0.7), 0 0 20px rgba(67, 97, 238, 0.5), 0 0 30px rgba(67, 97, 238, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(67, 97, 238, 0.9), 0 0 30px rgba(67, 97, 238, 0.7), 0 0 40px rgba(67, 97, 238, 0.5); }
+        }
+        
+        .floating {
+            animation: float 5s ease-in-out infinite;
+        }
+        
+        .glowing {
+            animation: glow 3s ease-in-out infinite;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero-3d-container {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 10, 40, 0.95);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+                backdrop-filter: blur(10px);
+                border-top: 1px solid var(--glass-border);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero {
+                padding: 150px 0 60px;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .registration-form {
+                padding: 30px;
+                transform: none;
+            }
+            
+            .registration-form:hover {
+                transform: none;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .topic-card, .benefit {
+                padding: 25px;
+            }
+            
+            .model-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="nav-container">
+                <div class="logo">
+                    <i class="fas fa-chart-line"></i>
+                    ডিজিটাল মার্কেটার 3D
+                </div>
+                <div class="mobile-menu" id="mobileMenu">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">হোম</a></li>
+                    <li><a href="#course">কোর্স বিস্তারিত</a></li>
+                    <li><a href="#topics">বিষয়সমূহ</a></li>
+                    <li><a href="#model">3D মডেল</a></li>
+                    <li><a href="#free-trial">ফ্রি ট্রায়াল</a></li>
+                    <li><a href="#testimonials">সফল শিক্ষার্থী</a></li>
+                    <li><button class="cta-button" id="enrollButton">এনরোল করুন</button></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <span class="highlight animate__animated animate__pulse animate__infinite">প্রথম ৩ দিন সম্পূর্ণ ফ্রি!</span>
+                    <h1 class="animate__animated animate__fadeInUp">ডিজিটাল মার্কেটিং <span style="color: var(--accent);">3D ইন্টারেক্টিভ</span> কোর্স</h1>
+                    <p class="animate__animated animate__fadeInUp animate__delay-1s">বিশেষজ্ঞ মার্কেটারদের থেকে শিখুন কিভাবে ডিজিটাল মার্কেটিং করে সফল ক্যারিয়ার গড়বেন এবং ব্যবসায় আয় বাড়াবেন। আমাদের ৩ দিনের ফ্রি ক্লাসে অংশ নিয়ে নিজেই দেখুন!</p>
+                    <button class="cta-button animate__animated animate__fadeInUp animate__delay-2s glowing" id="heroEnrollButton">
+                        ফ্রি ক্লাসে জয়েন করুন <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                <div class="hero-3d-container floating">
+                    <canvas id="hero-3d-canvas"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Details -->
+    <section class="course-details" id="course">
+        <div class="container">
+            <div class="section-title">
+                <h2>ডিজিটাল মার্কেটিং কি এবং কেন শিখবেন?</h2>
+                <p>ডিজিটাল প্রযুক্তির যুগে মার্কেটিংয়ের নতুন দিগন্ত</p>
+            </div>
+            
+            <div class="topics-grid" id="topics">
+                <div class="topic-card animate__animated">
+                    <i class="fas fa-search"></i>
+                    <h4>SEO (সার্চ ইঞ্জিন অপটিমাইজেশন)</h4>
+                    <p>কিভাবে Google-এ প্রথম পেজে আসবেন, কীওয়ার্ড রিসার্চ, On-Page ও Off-Page SEO সম্পূর্ণ গাইডলাইন।</p>
+                </div>
+                
+                <div class="topic-card animate__animated">
+                    <i class="fas fa-share-alt"></i>
+                    <h4>সোশ্যাল মিডিয়া মার্কেটিং</h4>
+                    <p>ফেসবুক, ইনস্টাগ্রাম, লিংকডইন, টুইটারে বিজ্ঞাপন ও কন্টেন্ট মার্কেটিং এর কৌশল।</p>
+                </div>
+                
+                <div class="topic-card animate__animated">
+                    <i class="fas fa-envelope"></i>
+                    <h4>কন্টেন্ট মার্কেটিং</h4>
+                    <p>ব্লগ, ভিডিও, ইনফোগ্রাফিক্স তৈরি করে কিভাবে টার্গেট অডিয়েন্সকে আকৃষ্ট করবেন।</p>
+                </div>
+                
+                <div class="topic-card animate__animated">
+                    <i class="fas fa-ad"></i>
+                    <h4>Google ও Facebook Ads</h4>
+                    <p>কিভাবে কম বাজেটে এড ক্যাম্পেইন তৈরি করে সেরা রিটার্ন পাবেন, সম্পূর্ণ হাতে-কলমে শিখুন।</p>
+                </div>
+                
+                <div class="topic-card animate__animated">
+                    <i class="fas fa-chart-bar"></i>
+                    <h4>ডেটা অ্যানালিটিক্স</h4>
+                    <p>Google Analytics ব্যবহার করে ভিজিটর বিহেভিয়ার ট্র্যাকিং এবং মার্কেটিং ক্যাম্পেইন বিশ্লেষণ।</p>
+                </div>
+                
+                <div class="topic-card animate__animated">
+                    <i class="fas fa-video"></i>
+                    <h4>ভিডিও মার্কেটিং</h4>
+                    <p>ইউটিউব মার্কেটিং, ভিডিও কন্টেন্ট তৈরি এবং ভিডিওর মাধ্যমে ব্র্যান্ড প্রমোশন।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3D Model Viewer -->
+    <section class="model-viewer" id="model">
+        <div class="container">
+            <div class="section-title">
+                <h2>ইন্টারেক্টিভ 3D মার্কেটিং মডেল</h2>
+                <p>ডিজিটাল মার্কেটিং প্রক্রিয়াটি 3D মডেলে এক্সপ্লোর করুন</p>
+            </div>
+            
+            <div class="model-container">
+                <canvas id="3d-model-canvas"></canvas>
+            </div>
+            
+            <div class="model-controls">
+                <button class="model-btn" id="rotate-btn"><i class="fas fa-sync-alt"></i> রোটেট</button>
+                <button class="model-btn" id="zoom-in-btn"><i class="fas fa-search-plus"></i> জুম ইন</button>
+                <button class="model-btn" id="zoom-out-btn"><i class="fas fa-search-minus"></i> জুম আউট</button>
+                <button class="model-btn" id="reset-btn"><i class="fas fa-redo"></i> রিসেট</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Trial Section -->
+    <section class="free-trial" id="free-trial">
+        <div class="container">
+            <h2 class="animate__animated animate__fadeInDown">৩ দিন ফ্রি কোর্স ট্রায়াল</h2>
+            <p class="animate__animated animate__fadeInDown animate__delay-1s">কোর্সটি আপনার জন্য কি না সেটি বুঝতে আমাদের ৩ দিনের ফ্রি ট্রায়ালে অংশ নিন। যদি পছন্দ হয়, তারপর সম্পূর্ণ কোর্সে এনরোল করুন।</p>
+            
+            <div class="trial-benefits">
+                <div class="benefit animate__animated">
+                    <i class="fas fa-calendar-check"></i>
+                    <h3>৩টি লাইভ ক্লাস</h3>
+                    <p>ডিজিটাল মার্কেটিংয়ের বেসিক থেকে এডভান্সড ৩টি সম্পূর্ণ লাইভ ক্লাস ফ্রি পাবেন।</p>
+                </div>
+                
+                <div class="benefit animate__animated">
+                    <i class="fas fa-file-alt"></i>
+                    <h3>প্রাকটিক্যাল অ্যাসাইনমেন্ট</h3>
+                    <p>প্রত্যেক ক্লাসের পর প্রাকটিক্যাল অ্যাসাইনমেন্ট পাবেন যা আপনাকে এক্সপার্ট বানাবে।</p>
+                </div>
+                
+                <div class="benefit animate__animated">
+                    <i class="fas fa-certificate"></i>
+                    <h3>ফ্রি সার্টিফিকেট</h3>
+                    <p>৩ দিনের ফ্রি কোর্স সম্পূর্ণ করলে একটি পার্টিসিপেশন সার্টিফিকেট পাবেন।</p>
+                </div>
+            </div>
+            
+            <div class="registration-form animate__animated">
+                <h3>ফ্রি কোর্সের জন্য রেজিস্ট্রেশন করুন</h3>
+                <form id="freeTrialForm">
+                    <div class="form-group">
+                        <label for="name">পূর্ণ নাম</label>
+                        <input type="text" id="name" class="form-control" placeholder="আপনার পূর্ণ নাম লিখুন" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">ইমেইল ঠিকানা</label>
+                        <input type="email" id="email" class="form-control" placeholder="আপনার ইমেইল লিখুন" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">মোবাইল নম্বর</label>
+                        <input type="tel" id="phone" class="form-control" placeholder="আপনার মোবাইল নম্বর লিখুন" required>
+                    </div>
+                    
+                    <button type="submit" class="cta-button glowing" style="width: 100%; padding: 18px; font-size: 1.1rem;">
+                        ফ্রি কোর্সে রেজিস্টার করুন <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>সফল শিক্ষার্থীদের কথা</h2>
+                <p>আমাদের কোর্স সম্পন্ন করে যারা ডিজিটাল মার্কেটারে পরিণত হয়েছেন</p>
+            </div>
+            
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="শিক্ষার্থী">
+                    <h4>রাকিব হাসান</h4>
+                    <p>এই কোর্সটি আমার ক্যারিয়ার পরিবর্তন করে দিয়েছে। ৩ দিনের ফ্রি ক্লাসের পরই বুঝতে পারলাম এটাই আমার প্রয়োজন। এখন আমি একটি এজেন্সিতে ডিজিটাল মার্কেটার হিসেবে কাজ করছি।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">
+                        <i class="fas fa-chart-line"></i> ডিজিটাল মার্কেটার 3D
+                    </div>
+                    <p style="color: rgba(255, 255, 255, 0.8);">ডিজিটাল মার্কেটিংয়ে ক্যারিয়ার গড়তে চান? আমাদের সাথে যুক্ত হোন এবং ডিজিটাল বিশ্বে নিজের স্থান তৈরি করুন।</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>দ্রুত লিংক</h4>
+                    <ul>
+                        <li><a href="#home">হোম</a></li>
+                        <li><a href="#course">কোর্স বিস্তারিত</a></li>
+                        <li><a href="#topics">বিষয়সমূহ</a></li>
+                        <li><a href="#model">3D মডেল</a></li>
+                        <li><a href="#free-trial">ফ্রি ট্রায়াল</a></li>
+                        <li><a href="#testimonials">সফল শিক্ষার্থী</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>যোগাযোগ</h4>
+                    <p><i class="fas fa-envelope"></i> info@digitalmarketer3d.com</p>
+                    <p><i class="fas fa-phone"></i> +880 1234 567890</p>
+                    <p><i class="fas fa-map-marker-alt"></i> ঢাকা, বাংলাদেশ</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© ২০২৩ ডিজিটাল মার্কেটার 3D। সর্বস্বত্ব সংরক্ষিত।</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenu').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
+        
+        // Form Submission
+        document.getElementById('freeTrialForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            
+            // In a real application, you would send this data to a server
+            // For now, we'll just show an alert
+            alert(`ধন্যবাদ ${name}! আপনার রেজিস্ট্রেশন সফলভাবে সম্পন্ন হয়েছে। আমরা শীঘ্রই আপনার ইমেইল ${email} এ ক্লাসের বিস্তারিত তথ্য পাঠাবো।`);
+            
+            // Reset form
+            document.getElementById('freeTrialForm').reset();
+        });
+        
+        // Enroll Button Actions
+        document.getElementById('enrollButton').addEventListener('click', function() {
+            document.getElementById('free-trial').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        document.getElementById('heroEnrollButton').addEventListener('click', function() {
+            document.getElementById('free-trial').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements
+        document.querySelectorAll('.topic-card, .benefit, .registration-form').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Particles Background
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#4361ee" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#3a0ca3",
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+        
+        // Simple 3D Scene for Hero
+        const heroCanvas = document.getElementById('hero-3d-canvas');
+        const heroScene = new THREE.Scene();
+        const heroCamera = new THREE.PerspectiveCamera(75, heroCanvas.clientWidth / heroCanvas.clientHeight, 0.1, 1000);
+        const heroRenderer = new THREE.WebGLRenderer({ canvas: heroCanvas, alpha: true, antialias: true });
+        
+        heroRenderer.setSize(heroCanvas.clientWidth, heroCanvas.clientHeight);
+        heroRenderer.setClearColor(0x000000, 0);
+        
+        // Add lighting
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        heroScene.add(ambientLight);
+        
+        const directionalLight = new THREE.DirectionalLight(0x4361ee, 1);
+        directionalLight.position.set(5, 5, 5);
+        heroScene.add(directionalLight);
+        
+        const pointLight = new THREE.PointLight(0xf72585, 1, 100);
+        pointLight.position.set(-5, 5, 5);
+        heroScene.add(pointLight);
+        
+        // Create 3D objects for digital marketing concepts
+        const createMarketingObjects = () => {
+            // Central sphere (Digital Marketing Core)
+            const coreGeometry = new THREE.SphereGeometry(1, 32, 32);
+            const coreMaterial = new THREE.MeshPhongMaterial({ 
+                color: 0x4361ee,
+                shininess: 100,
+                specular: 0x444444
+            });
+            const core = new THREE.Mesh(coreGeometry, coreMaterial);
+            heroScene.add(core);
+            
+            // Orbiting objects (Marketing Channels)
+            const objects = [];
+            const colors = [0xf72585, 0x4cc9f0, 0x7209b7, 0x3a0ca3];
+            const shapes = ['box', 'cylinder', 'cone', 'torus'];
+            
+            for (let i = 0; i < 4; i++) {
+                let geometry;
+                
+                if (shapes[i] === 'box') {
+                    geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
+                } else if (shapes[i] === 'cylinder') {
+                    geometry = new THREE.CylinderGeometry(0.3, 0.3, 0.8, 16);
+                } else if (shapes[i] === 'cone') {
+                    geometry = new THREE.ConeGeometry(0.4, 0.8, 16);
+                } else {
+                    geometry = new THREE.TorusGeometry(0.4, 0.1, 16, 100);
+                }
+                
+                const material = new THREE.MeshPhongMaterial({ 
+                    color: colors[i],
+                    shininess: 100 
+                });
+                
+                const object = new THREE.Mesh(geometry, material);
+                
+                // Position objects in a circle around the core
+                const angle = (i / 4) * Math.PI * 2;
+                const radius = 3;
+                object.position.x = Math.cos(angle) * radius;
+                object.position.z = Math.sin(angle) * radius;
+                object.position.y = 0;
+                
+                objects.push({ mesh: object, angle: angle, radius: radius });
+                heroScene.add(object);
+            }
+            
+            return { core, objects };
+        };
+        
+        const marketingObjects = createMarketingObjects();
+        
+        // Position camera
+        heroCamera.position.z = 8;
+        heroCamera.position.y = 2;
+        
+        // Animation loop for hero scene
+        const animateHeroScene = () => {
+            requestAnimationFrame(animateHeroScene);
+            
+            // Rotate core
+            marketingObjects.core.rotation.x += 0.005;
+            marketingObjects.core.rotation.y += 0.01;
+            
+            // Orbit objects around core
+            marketingObjects.objects.forEach((obj, index) => {
+                obj.angle += 0.01 + (index * 0.002);
+                obj.mesh.position.x = Math.cos(obj.angle) * obj.radius;
+                obj.mesh.position.z = Math.sin(obj.angle) * obj.radius;
+                obj.mesh.rotation.x += 0.01;
+                obj.mesh.rotation.y += 0.01;
+            });
+            
+            heroRenderer.render(heroScene, heroCamera);
+        };
+        
+        animateHeroScene();
+        
+        // Handle window resize for hero scene
+        window.addEventListener('resize', () => {
+            heroCamera.aspect = heroCanvas.clientWidth / heroCanvas.clientHeight;
+            heroCamera.updateProjectionMatrix();
+            heroRenderer.setSize(heroCanvas.clientWidth, heroCanvas.clientHeight);
+        });
+        
+        // 3D Model Viewer
+        const modelCanvas = document.getElementById('3d-model-canvas');
+        const modelScene = new THREE.Scene();
+        const modelCamera = new THREE.PerspectiveCamera(75, modelCanvas.clientWidth / modelCanvas.clientHeight, 0.1, 1000);
+        const modelRenderer = new THREE.WebGLRenderer({ canvas: modelCanvas, antialias: true });
+        
+        modelRenderer.setSize(modelCanvas.clientWidth, modelCanvas.clientHeight);
+        modelRenderer.setClearColor(0x0c0c2e);
+        
+        // Add lighting
+        const modelAmbientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        modelScene.add(modelAmbientLight);
+        
+        const modelDirectionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        modelDirectionalLight.position.set(10, 10, 10);
+        modelScene.add(modelDirectionalLight);
+        
+        // Create a 3D model of digital marketing funnel
+        const createMarketingFunnel = () => {
+            const group = new THREE.Group();
+            
+            // Funnel base (wide part)
+            const funnelTopGeometry = new THREE.CylinderGeometry(2, 0.5, 3, 32);
+            const funnelMaterial = new THREE.MeshPhongMaterial({ 
+                color: 0x4361ee,
+                transparent: true,
+                opacity: 0.7,
+                side: THREE.DoubleSide
+            });
+            const funnelTop = new THREE.Mesh(funnelTopGeometry, funnelMaterial);
+            funnelTop.position.y = 0;
+            group.add(funnelTop);
+            
+            // Marketing stages as spheres moving through funnel
+            const stages = [
+                { name: "Awareness", color: 0xf72585, radius: 0.3 },
+                { name: "Interest", color: 0x4cc9f0, radius: 0.25 },
+                { name: "Decision", color: 0x7209b7, radius: 0.2 },
+                { name: "Action", color: 0x3a0ca3, radius: 0.15 }
+            ];
+            
+            const stageObjects = [];
+            
+            stages.forEach((stage, index) => {
+                const geometry = new THREE.SphereGeometry(stage.radius, 16, 16);
+                const material = new THREE.MeshPhongMaterial({ color: stage.color });
+                const sphere = new THREE.Mesh(geometry, material);
+                
+                // Position spheres at different heights in the funnel
+                sphere.position.y = 1.5 - (index * 0.8);
+                sphere.position.x = Math.sin(Date.now() * 0.001 + index) * (1.5 - index * 0.3);
+                sphere.position.z = Math.cos(Date.now() * 0.001 + index) * (1.5 - index * 0.3);
+                
+                stageObjects.push({
+                    mesh: sphere,
+                    originalY: sphere.position.y,
+                    index: index,
+                    speed: 0.002 + (index * 0.001)
+                });
+                
+                group.add(sphere);
+                
+                // Add label (text would require font loading, using a small box instead)
+                const labelGeometry = new THREE.BoxGeometry(0.1, 0.1, 0.1);
+                const labelMaterial = new THREE.MeshBasicMaterial({ color: stage.color });
+                const label = new THREE.Mesh(labelGeometry, labelMaterial);
+                label.position.set(sphere.position.x, sphere.position.y + 0.5, sphere.position.z);
+                group.add(label);
+            });
+            
+            return { group, stageObjects };
+        };
+        
+        const marketingFunnel = createMarketingFunnel();
+        modelScene.add(marketingFunnel.group);
+        
+        // Position camera
+        modelCamera.position.z = 8;
+        modelCamera.position.y = 3;
+        
+        // Add orbit controls for model viewer
+        const controls = new THREE.OrbitControls(modelCamera, modelRenderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+        controls.rotateSpeed = 0.5;
+        
+        // Model controls
+        let rotating = true;
+        document.getElementById('rotate-btn').addEventListener('click', () => {
+            rotating = !rotating;
+            document.getElementById('rotate-btn').innerHTML = rotating ? 
+                '<i class="fas fa-pause"></i> পজ' : '<i class="fas fa-sync-alt"></i> রোটেট';
+        });
+        
+        document.getElementById('zoom-in-btn').addEventListener('click', () => {
+            modelCamera.position.z -= 1;
+        });
+        
+        document.getElementById('zoom-out-btn').addEventListener('click', () => {
+            modelCamera.position.z += 1;
+        });
+        
+        document.getElementById('reset-btn').addEventListener('click', () => {
+            controls.reset();
+            modelCamera.position.z = 8;
+            modelCamera.position.y = 3;
+        });
+        
+        // Animation loop for model scene
+        const animateModelScene = () => {
+            requestAnimationFrame(animateModelScene);
+            
+            if (rotating) {
+                marketingFunnel.group.rotation.y += 0.005;
+            }
+            
+            // Animate the spheres moving through the funnel
+            marketingFunnel.stageObjects.forEach(obj => {
+                obj.mesh.position.x = Math.sin(Date.now() * obj.speed + obj.index) * (1.5 - obj.index * 0.3);
+                obj.mesh.position.z = Math.cos(Date.now() * obj.speed + obj.index) * (1.5 - obj.index * 0.3);
+                
+                // Slowly move spheres downward
+                obj.mesh.position.y -= 0.001;
+                
+                // Reset position when sphere reaches bottom
+                if (obj.mesh.position.y < -1.5) {
+                    obj.mesh.position.y = obj.originalY;
+                }
+            });
+            
+            controls.update();
+            modelRenderer.render(modelScene, modelCamera);
+        };
+        
+        animateModelScene();
+        
+        // Handle window resize for model scene
+        window.addEventListener('resize', () => {
+            modelCamera.aspect = modelCanvas.clientWidth / modelCanvas.clientHeight;
+            modelCamera.updateProjectionMatrix();
+            modelRenderer.setSize(modelCanvas.clientWidth, modelCanvas.clientHeight);
+        });
+        
+        // Add floating animation to some elements
+        document.querySelectorAll('.floating').forEach(el => {
+            el.style.animationDelay = Math.random() * 2 + 's';
+        });
+    </script>
+</body>
+</html>
